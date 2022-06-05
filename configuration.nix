@@ -208,13 +208,6 @@
     };
   };
 
-  programs.git = {
-    enable = true;
-    config = {
-
-    };
-  };
-
   virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true;
 
