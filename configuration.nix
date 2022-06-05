@@ -181,6 +181,7 @@
     appimage-run
     virt-manager
     ardour
+    gh
   ];
 
   programs.neovim = {
