@@ -8,6 +8,7 @@
 
   services = {
     xserver = {
+      displayManager.gdm.wayland = false;
       videoDrivers = [ "nvidia" ];
       screenSection = ''
         Option         "metamodes" "DP-2: 2560x1440_120 +0+0 {AllowGSYNC=Off}, DP-4: 1920x1080_120 +2560+0 {rotation=left, AllowGSYNC=Off}"
