@@ -11,7 +11,7 @@ in {
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./secrets.nix
-      ./desktop.nix
+      ./laptop.nix
       <home-manager/nixos>
     ];
 
@@ -124,6 +124,7 @@ in {
     ncdu
     usbutils
     file
+    lm_sensors
   # Audio
     pavucontrol
     helvum
