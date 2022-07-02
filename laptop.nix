@@ -3,10 +3,14 @@
 {
   powerManagement.cpuFreqGovernor = "schedutil";
 
-  hardware.cpu.amd.updateMicrocode = true;
+  hardware = {
+    bluetooth.powerOnBoot = false;
+  };
 
-  services.power-profiles-daemon.enable = false;
-  services.tlp.enable = true;
+  services = {
+    power-profiles-daemon.enable = false;
+    tlp.enable = true;
+  };
 
   networking = {
     hostName = "Luxtop"; 

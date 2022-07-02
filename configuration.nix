@@ -119,6 +119,7 @@ in {
     gnome.gnome-tweaks
     gnome.gnome-shell-extensions
     gnomeExtensions.appindicator
+    gnomeExtensions.legacy-gtk3-theme-scheme-auto-switcher
   # Utils
     htop
     ncdu
