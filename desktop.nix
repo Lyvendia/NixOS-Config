@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
-{
+let
+  unstable = import <nixos-unstable> {};
+in {
   networking = {
     hostName = "Luxputer-Nix"; 
     networkmanager.enable = true;
@@ -11,7 +13,10 @@
       displayManager.gdm.wayland = false;
       videoDrivers = [ "nvidia" ];
       screenSection = ''
-        Option         "metamodes" "DP-2: 2560x1440_120 +0+0 {AllowGSYNC=Off}, DP-4: 1920x1080_120 +2560+0 {rotation=left, AllowGSYNC=Off}"
+        Option        "metamodes" "DP-2: 2560x1440_120 +0+0 {AllowGSYNC=Off}, DP-4: 1920x1080_120 +2560+0 {rotation=left, AllowGSYNC=Off}"
+      '';
+      deviceSection = ''
+        Option        "Coolbits" "12"
       '';
     };
 
@@ -33,6 +38,17 @@
 
   hardware = {
     nvidia.powerManagement.enable = true;
+    openrazer.enable = true;
+    openrazer.users = [ "luna" ];
   };
+
+  powerManagement = {
+    cpuFreqGovernor = "performance";
+    scsiLinkPolicy = "med_power_with_dipm";
+  };
+
+  environment.systemPackages = with pkgs; [
+    unstable.polychromatic
+  ];
 
 }

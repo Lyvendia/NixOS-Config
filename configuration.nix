@@ -11,7 +11,7 @@ in {
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./secrets.nix
-      ./laptop.nix
+      ./desktop.nix
       <home-manager/nixos>
     ];
 
@@ -87,6 +87,7 @@ in {
     printing.enable = true;
     flatpak.enable = true;
     usbmuxd.enable = true;
+    power-profiles-daemon.enable = false;
   };  
 
   # Configure console keymap
