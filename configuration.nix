@@ -127,6 +127,7 @@ in {
     usbutils
     file
     lm_sensors
+    nmap
   # Audio
     pavucontrol
     helvum
