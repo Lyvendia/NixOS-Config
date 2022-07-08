@@ -28,6 +28,8 @@ in {
       };
     };
 
+    kernelPackages = pkgs.linuxPackages_latest;
+
     # Setup keyfile
     initrd.secrets = {
       "/crypto_keyfile.bin" = null;
@@ -84,7 +86,10 @@ in {
       pulse.enable = true;
       #jack.enable = true;
     };
-    printing.enable = true;
+    printing = {
+      enable = true;
+      drivers = [ pkgs.hplip ];
+    };
     flatpak.enable = true;
     usbmuxd.enable = true;
     power-profiles-daemon.enable = false;
@@ -128,6 +133,7 @@ in {
     file
     lm_sensors
     nmap
+    smartmontools
   # Audio
     pavucontrol
     helvum
