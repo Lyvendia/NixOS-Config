@@ -11,7 +11,6 @@ in {
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./secrets.nix
-      ./desktop.nix
       <home-manager/nixos>
     ];
 
@@ -69,7 +68,6 @@ in {
       enable = true;    
       displayManager = {
         gdm.enable = true;
-        gdm.wayland = false;
         autoLogin.enable = true;
         autoLogin.user = "luna";
       };
