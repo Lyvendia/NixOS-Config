@@ -74,8 +74,9 @@ in {
       desktopManager.gnome.enable = true;
       layout = "de";
       xkbVariant = "nodeadkeys";
-      autoRepeatDelay = 100;
-      autoRepeatInterval = 20;
+      xkbOptions = "caps:swapescape"; 
+      autoRepeatDelay = 200;
+      autoRepeatInterval = 25;
     };
     pipewire = {
       enable = true;
@@ -98,7 +99,10 @@ in {
 
   hardware = {
     ledger.enable = true;
-    opengl.enable = true;
+    opengl = {
+      enable = true;
+      driSupport32Bit = true;
+    };
     opentabletdriver.enable = true;
     pulseaudio.enable = false;
   };
@@ -145,6 +149,8 @@ in {
     virt-viewer
     unstable.ledger-live-desktop
     checkra1n
+    vscodium
+    gimp
   # Devel
     gh
     python3Full

@@ -1,8 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  kernelPackages = pkgs.linuxPackages_latest;
-
   boot = {
     kernelParams = [
       "initcall_blacklist=acpi_cpufreq_init"
