@@ -126,6 +126,7 @@ in {
   # Gnome
     gnome.gnome-tweaks
     gnome.gnome-shell-extensions
+    gnome-solanum
     gnomeExtensions.appindicator
     gnomeExtensions.legacy-gtk3-theme-scheme-auto-switcher
   # Utils
@@ -136,6 +137,7 @@ in {
     lm_sensors
     nmap
     smartmontools
+    android-tools
   # Audio
     pavucontrol
     helvum
