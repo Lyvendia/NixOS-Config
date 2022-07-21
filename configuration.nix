@@ -46,23 +46,6 @@ in {
     sudo.wheelNeedsPassword = false;
   };
 
-  networking.firewall = {
-    extraCommands = ''
-      iptables -A nixos-fw -p tcp --source 192.168.0.0/24 -j nixos-fw-accept
-      iptables -A nixos-fw -p udp --source 192.168.0.0/24 -j nixos-fw-accept
-      ip6tables -A nixos-fw -p tcp --source fc00::/7 -j nixos-fw-accept
-      ip6tables -A nixos-fw -p udp --source fc00::/7 -j nixos-fw-accept
-
-    '';
-
-    extraStopCommands = ''
-      iptables -D nixos-fw -p tcp --source 192.168.0.0/24 -j nixos-fw-accept || true
-      iptables -D nixos-fw -p udp --source 192.168.0.0/24 -j nixos-fw-accept || true
-      ip6tables -D nixos-fw -p tcp --source fc00::/7 -j nixos-fw-accept || true    
-      ip6tables -D nixos-fw -p udp --source fc00::/7 -j nixos-fw-accept || true
-    '';
-  };
-  
   time.timeZone = "Europe/Berlin";
 
   i18n = {
