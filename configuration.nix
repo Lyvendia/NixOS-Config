@@ -45,6 +45,23 @@ in {
     rtkit.enable = true;  
     sudo.wheelNeedsPassword = false;
   };
+
+  networking.firewall = {
+    extraCommands = ''
+      iptables -A nixos-fw -p tcp --source 192.168.0.0/24 -j nixos-fw-accept
+      iptables -A nixos-fw -p udp --source 192.168.0.0/24 -j nixos-fw-accept
+      ip6tables -A nixos-fw -p tcp --source fc00::/7 -j nixos-fw-accept
+      ip6tables -A nixos-fw -p udp --source fc00::/7 -j nixos-fw-accept
+
+    '';
+
+    extraStopCommands = ''
+      iptables -D nixos-fw -p tcp --source 192.168.0.0/24 -j nixos-fw-accept || true
+      iptables -D nixos-fw -p udp --source 192.168.0.0/24 -j nixos-fw-accept || true
+      ip6tables -D nixos-fw -p tcp --source fc00::/7 -j nixos-fw-accept || true    
+      ip6tables -D nixos-fw -p udp --source fc00::/7 -j nixos-fw-accept || true
+    '';
+  };
   
   time.timeZone = "Europe/Berlin";
 
@@ -91,6 +108,7 @@ in {
     };
     flatpak.enable = true;
     usbmuxd.enable = true;
+    spice-vdagentd.enable = true;
     power-profiles-daemon.enable = false;
   };  
 
@@ -185,8 +203,11 @@ in {
 
     dconf.enable = true;
   };
-   
-  virtualisation.libvirtd.enable = true;
+
+  virtualisation = {
+    libvirtd.enable = true;
+    spiceUSBRedirection.enable = true;
+  };
 
   environment.variables = {
     EDITOR = "nvim";
