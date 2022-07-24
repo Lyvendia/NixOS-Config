@@ -89,6 +89,7 @@ in {
       enable = true;
       drivers = [ pkgs.hplip ];
     };
+    fwupd.enable = true;
     flatpak.enable = true;
     usbmuxd.enable = true;
     spice-vdagentd.enable = true;
