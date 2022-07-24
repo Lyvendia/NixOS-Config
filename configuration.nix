@@ -185,6 +185,8 @@ in {
     };
 
     dconf.enable = true;
+
+    gamemode.enable = true;
   };
 
   virtualisation = {
