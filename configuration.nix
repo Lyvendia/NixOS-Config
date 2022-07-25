@@ -118,7 +118,7 @@ in {
   users.users.luna = {
     isNormalUser = true;
     description = "Luna Specht";
-    extraGroups = [ "networkmanager" "wheel" "audio" "disk" "input" "kvm" "optical" "scanner" "storage" "video" "libvirtd" ];
+    extraGroups = [ "networkmanager" "wheel" "audio" "disk" "input" "kvm" "optical" "scanner" "storage" "video" "libvirtd" "adbusers" ];
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -130,6 +130,7 @@ in {
     gnome.gnome-tweaks
     gnome.gnome-shell-extensions
     gnome-solanum
+    gnome-firmware
     gnomeExtensions.appindicator
     gnomeExtensions.legacy-gtk3-theme-scheme-auto-switcher
   # Utils
@@ -140,7 +141,7 @@ in {
     lm_sensors
     nmap
     smartmontools
-    android-tools
+    android-udev-rules
   # Audio
     pavucontrol
     helvum
@@ -156,6 +157,7 @@ in {
     checkra1n
     vscodium
     gimp
+    android-file-transfer
   # Devel
     gh
     python3Full
@@ -185,9 +187,8 @@ in {
         };
       };
     };
-
+    adb.enable = true;
     dconf.enable = true;
-
     gamemode.enable = true;
   };
 
