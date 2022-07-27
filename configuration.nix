@@ -100,7 +100,10 @@ in {
     power-profiles-daemon.enable = false;
   };  
 
-  systemd.services.NetworkManager-wait-online.enable = false;
+  systemd.services = {
+    packagekit.enable = false;
+    NetworkManager-wait-online.enable = false;
+  };
 
   # Configure console keymap
   console.keyMap = "de-latin1-nodeadkeys";

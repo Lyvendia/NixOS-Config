@@ -16,7 +16,7 @@
 
   services = {
     tlp.enable = true;
-    fwupd.service = true;
+    #fwupd.service = true;
   };
 
   networking = {
