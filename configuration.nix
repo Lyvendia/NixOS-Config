@@ -37,8 +37,13 @@ in {
     initrd.verbose = false;
     consoleLogLevel = 0;
     kernelParams = [ "quiet" "loglevel=3" "rd.systemd.show_status=auto" "rd.udev.log_level=3" ];
+  };
 
-    plymouth.enable = true;
+  networking = {
+    dhcpcd = {
+      wait = "background";
+      extraConfig = "noarp";
+    };
   };
 
   security = {
@@ -81,7 +86,7 @@ in {
     pipewire = {
       enable = true;
       alsa.enable = true;
-      alsa.support32Bit = true;
+      #alsa.support32Bit = true;
       pulse.enable = true;
       #jack.enable = true;
     };
@@ -89,7 +94,6 @@ in {
       enable = true;
       drivers = [ pkgs.hplip ];
     };
-    gvfs.enable = true;
     fwupd.enable = true;
     flatpak.enable = true;
     usbmuxd.enable = true;
@@ -104,7 +108,6 @@ in {
     ledger.enable = true;
     opengl = {
       enable = true;
-      driSupport32Bit = true;
     };
     opentabletdriver.enable = true;
     pulseaudio.enable = false;
@@ -130,7 +133,6 @@ in {
     gnome.gnome-tweaks
     gnome.gnome-shell-extensions
     gnome-solanum
-    gnome-firmware
     gnomeExtensions.appindicator
     gnomeExtensions.legacy-gtk3-theme-scheme-auto-switcher
   # Utils
@@ -158,9 +160,6 @@ in {
     vscodium
     gimp
     android-file-transfer
-  # Devel
-    gh
-    python3Full
   ];
 
   programs = {
