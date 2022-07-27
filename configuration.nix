@@ -94,12 +94,13 @@ in {
       enable = true;
       drivers = [ pkgs.hplip ];
     };
-    fwupd.enable = true;
     flatpak.enable = true;
     usbmuxd.enable = true;
     spice-vdagentd.enable = true;
     power-profiles-daemon.enable = false;
   };  
+
+  systemd.services.NetworkManager-wait-online.enable = false;
 
   # Configure console keymap
   console.keyMap = "de-latin1-nodeadkeys";
