@@ -125,7 +125,7 @@ in {
   users.users.luna = {
     isNormalUser = true;
     description = "Luna Specht";
-    extraGroups = [ "networkmanager" "wheel" "audio" "disk" "input" "kvm" "optical" "scanner" "storage" "video" "libvirtd" "adbusers" ];
+    extraGroups = [ "networkmanager" "wheel" "audio" "disk" "input" "kvm" "optical" "scanner" "storage" "video" "libvirtd" "adbusers" "docker" ];
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -164,6 +164,7 @@ in {
     vscodium
     gimp
     android-file-transfer
+    bundix
   ];
 
   programs = {
@@ -173,14 +174,15 @@ in {
       vimAlias = true;
       configure = {
         customRC = ''
-          set nocompatible
-          filetype on
-          filetype plugin on
-          filetype indent on
-          syntax on
-          set shiftwidth=2
-          set tabstop=2
-          set expandtab
+          lua << EOF
+          vim.o.ignorecase = true
+          vim.o.lazyredraw = true
+          vim.o.number = true
+          vim.o.relativenumber = true
+          vim.o.shiftwidth = 2
+          vim.o.tabstop = 2
+          vim.o.termguicolors = true
+          EOF
         '';
         packages.myVimPackage = with pkgs.vimPlugins; {
           # loaded on launch
@@ -196,6 +198,7 @@ in {
   };
 
   virtualisation = {
+    docker.enable = true;
     libvirtd.enable = true;
     spiceUSBRedirection.enable = true;
   };
@@ -203,6 +206,7 @@ in {
   environment.variables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
+    TERM = "xterm-kitty";
     LV2_PATH = "$HOME/.lv2:$HOME/.nix-profile/lib/lv2:/run/current-system/sw/lib/lv2";
   };
 
@@ -221,6 +225,35 @@ in {
         enable = true;
         userName  = "Lyvendia";
         userEmail = "lyvendia@tutanota.com";
+      };
+      kitty = {
+        enable = true;
+        settings = {
+          font_size = "14.0";
+          remember_window_size = "yes";
+          
+          background = "#0e1419";
+          foreground = "#e5e1cf";
+          cursor = "#f19618";
+          selection_background = "#243340";
+          color0 = "#000000";
+          color8 = "#323232";
+          color1 = "#ff3333";
+          color9 = "#ff6565";
+          color2 = "#b8cc52";
+          color10 = "#e9fe83";
+          color3 = "#e6c446";
+          color11 = "#fff778";
+          color4 = "#36a3d9";
+          color12 = "#68d4ff";
+          color5 = "#f07078";
+          color13 = "#ffa3aa";
+          color6 = "#95e5cb";
+          color14 = "#c7fffc";
+          color7 = "#ffffff";
+          color15 = "#ffffff";
+          selection_foreground = "#0e1419";
+        };
       };
     };
   };
