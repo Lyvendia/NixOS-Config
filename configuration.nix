@@ -227,10 +227,20 @@ in {
   home-manager.users.luna = { pkgs, ... }: {
     home.packages = [  ];
     programs = {
+      bash = {
+        enable = true;
+        bashrcExtra = ''
+          set -o vi
+        '';
+      };
       git = {
         enable = true;
         userName  = "Lyvendia";
         userEmail = "lyvendia@tutanota.com";
+        signing = {
+          key = "5754213C2E27F5AD";
+          signByDefault = true;
+        };
       };
       kitty = {
         enable = true;
