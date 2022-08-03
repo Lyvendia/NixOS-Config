@@ -165,6 +165,7 @@ in {
     gimp
     android-file-transfer
     bundix
+    pinentry-curses
   ];
 
   programs = {
@@ -175,22 +176,27 @@ in {
       configure = {
         customRC = ''
           lua << EOF
+
           vim.o.ignorecase = true
           vim.o.lazyredraw = true
           vim.o.number = true
           vim.o.relativenumber = true
           vim.o.shiftwidth = 2
           vim.o.tabstop = 2
-          vim.o.termguicolors = true
+
           EOF
         '';
         packages.myVimPackage = with pkgs.vimPlugins; {
           # loaded on launch
-          start = [ vim-nix ];
+          start = [ vim-nix nvim-treesitter ];
           # manually loadable by calling `:packadd $plugin-name`
           opt = [ ];
         };
       };
+    };
+    gnupg.agent = {
+      enable = true;
+      pinentryFlavor = "curses";
     };
     adb.enable = true;
     dconf.enable = true;
