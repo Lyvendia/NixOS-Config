@@ -121,7 +121,12 @@ in {
   # Enable sound with pipewire.
   sound.enable = true;
 
-  fonts.fontDir.enable = true;
+  fonts = {
+    fontDir.enable = true;
+    fonts = with pkgs; [
+      (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
+    ];
+  };
 
   users.users.luna = {
     isNormalUser = true;
@@ -190,6 +195,7 @@ in {
           vim.o.ignorecase = true
           vim.o.smartcase = true
           vim.o.undofile = true
+          vim.o.autoindent = true
 
           require'nvim-treesitter.configs'.setup {
             ensure_installed = { "nix" },
@@ -265,6 +271,7 @@ in {
         enable = true;
         settings = {
           font_size = "14.0";
+          font_family = "SauceCodePro Nerd Font Mono";
           remember_window_size = "yes";
          
           ## name: Tokyo Night
