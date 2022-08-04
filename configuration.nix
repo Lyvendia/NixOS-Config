@@ -16,7 +16,7 @@ in {
 
   boot = {
     loader = {
-      efi = {
+			efi = {
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot/efi";
       };
@@ -25,6 +25,7 @@ in {
         consoleMode = "0";
         configurationLimit = 24;
       };
+      timeout = 0;
     };
 
     kernelPackages = pkgs.linuxPackages_latest;
@@ -166,6 +167,7 @@ in {
     android-file-transfer
     bundix
     pinentry-curses
+		gcc
   ];
 
   programs = {
@@ -175,21 +177,36 @@ in {
       vimAlias = true;
       configure = {
         customRC = ''
-          lua << EOF
+          lua <<EOF
 
-          vim.o.ignorecase = true
-          vim.o.lazyredraw = true
+          vim.o.termguicolors = true
+          vim.o.tabstop = 2
+          vim.o.shiftwidth = 0
+          vim.o.softtabstop = -1 
+          vim.o.expandtab = true
+          vim.o.clipboard = unnamedplus
           vim.o.number = true
           vim.o.relativenumber = true
-          vim.o.shiftwidth = 2
-          vim.o.tabstop = 2
+          vim.o.ignorecase = true
+          vim.o.smartcase = true
+          vim.o.undofile = true
+
+          require'nvim-treesitter.configs'.setup {
+            ensure_installed = { "nix" },
+            sync_install = false,
+            auto_install = true,
+            highlight = {
+              enable = true,
+              additional_vim_regex_highlighting = false,
+            },
+          }
+
+          vim.cmd("colorscheme nightfox")
 
           EOF
         '';
         packages.myVimPackage = with pkgs.vimPlugins; {
-          # loaded on launch
-          start = [ vim-nix nvim-treesitter ];
-          # manually loadable by calling `:packadd $plugin-name`
+          start = [ nvim-treesitter nightfox-nvim ];
           opt = [ ];
         };
       };
@@ -247,28 +264,56 @@ in {
         settings = {
           font_size = "14.0";
           remember_window_size = "yes";
-          
-          background = "#0e1419";
-          foreground = "#e5e1cf";
-          cursor = "#f19618";
-          selection_background = "#243340";
-          color0 = "#000000";
-          color8 = "#323232";
-          color1 = "#ff3333";
-          color9 = "#ff6565";
-          color2 = "#b8cc52";
-          color10 = "#e9fe83";
-          color3 = "#e6c446";
-          color11 = "#fff778";
-          color4 = "#36a3d9";
-          color12 = "#68d4ff";
-          color5 = "#f07078";
-          color13 = "#ffa3aa";
-          color6 = "#95e5cb";
-          color14 = "#c7fffc";
-          color7 = "#ffffff";
-          color15 = "#ffffff";
-          selection_foreground = "#0e1419";
+         
+          # Nightfox colors for Kitty
+          ## name: nightfox
+          ## upstream: https://github.com/edeneast/nightfox.nvim/raw/main/extra/nightfox/nightfox_kitty.conf
+
+          background = "#192330";
+          foreground = "#cdcecf";
+          selection_background = "#2b3b51";
+          selection_foreground = "#cdcecf";
+          url_color = "#81b29a";
+
+          # Cursor
+          # uncomment for reverse background
+          # cursor none
+          cursor = "#cdcecf";
+
+          # Border
+          active_border_color = "#719cd6";
+          inactive_border_color = "#39506d";
+          bell_border_color = "#f4a261";
+
+          # Tabs
+          active_tab_background = "#719cd6";
+          active_tab_foreground = "#131a24";
+          inactive_tab_background = "#2b3b51";
+          inactive_tab_foreground = "#738091";
+
+          # normal
+          color0 = "#393b44";
+          color1 = "#c94f6d";
+          color2 = "#81b29a";
+          color3 = "#dbc074";
+          color4 = "#719cd6";
+          color5 = "#9d79d6";
+          color6 = "#63cdcf";
+          color7 = "#dfdfe0";
+
+          # bright
+          color8 = "#575860";
+          color9 = "#d16983";
+          color10 = "#8ebaa4";
+          color11 = "#e0c989";
+          color12 = "#86abdc";
+          color13 = "#baa1e2";
+          color14 = "#7ad4d6";
+          color15 = "#e4e4e5";
+
+          # extended colors
+          color16 = "#f4a261";
+          color17 = "#d67ad2";
         };
       };
     };

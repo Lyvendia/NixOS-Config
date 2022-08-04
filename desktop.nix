@@ -3,8 +3,6 @@
 let
   unstable = import <nixos-unstable> {};
 in {
-  boot.loader.timeout = 1;
-
   networking = {
     hostName = "Luxputer-Nix"; 
     networkmanager.enable = true;
@@ -67,6 +65,7 @@ in {
   environment.systemPackages = with pkgs; [
     unstable.polychromatic
     lutris
+    xclip
   ];
 
 }
