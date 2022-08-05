@@ -16,7 +16,7 @@ in {
 
   boot = {
     loader = {
-			efi = {
+      efi = {
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot/efi";
       };
@@ -171,7 +171,7 @@ in {
     android-file-transfer
     bundix
     pinentry-curses
-		gcc
+    gcc
   ];
 
   programs = {
