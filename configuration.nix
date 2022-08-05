@@ -106,7 +106,6 @@ in {
     NetworkManager-wait-online.enable = false;
   };
 
-  # Configure console keymap
   console.keyMap = "de-latin1-nodeadkeys";
 
   hardware = {
@@ -118,7 +117,6 @@ in {
     pulseaudio.enable = false;
   };
 
-  # Enable sound with pipewire.
   sound.enable = true;
 
   fonts = {
@@ -154,6 +152,7 @@ in {
     nmap
     smartmontools
     android-udev-rules
+    neofetch
   # Audio
     pavucontrol
     helvum

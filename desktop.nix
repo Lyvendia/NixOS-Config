@@ -39,7 +39,6 @@ in {
       iptables -A nixos-fw -p udp --source 192.168.0.0/24 -j nixos-fw-accept
       ip6tables -A nixos-fw -p tcp --source fc00::/7 -j nixos-fw-accept
       ip6tables -A nixos-fw -p udp --source fc00::/7 -j nixos-fw-accept
-
     '';
 
     extraStopCommands = ''
