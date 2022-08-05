@@ -194,7 +194,7 @@ in {
           vim.o.ignorecase = true
           vim.o.smartcase = true
           vim.o.undofile = true
-          vim.o.autoindent = true
+          vim.o.cindent = true
 
           require'nvim-treesitter.configs'.setup {
             ensure_installed = { "nix" },
