@@ -115,6 +115,7 @@ in {
     };
     opentabletdriver.enable = true;
     pulseaudio.enable = false;
+    enableAllFirmware = true;
   };
 
   sound.enable = true;
