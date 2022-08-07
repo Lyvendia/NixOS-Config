@@ -54,6 +54,9 @@ in {
     nvidia = {
       #powerManagement.enable = true;
       modesetting.enable = true;
+      package = pkgs.nur.repos.arc.packages.nvidia-patch.override {
+        linuxPackages = pkgs.linuxPackages_latest;
+      };
     };
     openrazer.enable = true;
     openrazer.users = [ "luna" ];

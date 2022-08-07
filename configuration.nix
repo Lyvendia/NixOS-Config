@@ -121,7 +121,6 @@ in {
     };
     opentabletdriver.enable = true;
     pulseaudio.enable = false;
-    enableAllFirmware = true;
   };
 
   sound.enable = true;
@@ -170,7 +169,6 @@ in {
     unstable.polymc
     unstable.ledger-live-desktop
   # Other
-    obs-studio
     signal-desktop
     discord
     strongswan
@@ -255,7 +253,7 @@ in {
   environment.shellAliases = {
     nixos-edit = "sudoedit /etc/nixos/configuration.nix";
     nixos-apply = "sudo nixos-rebuild switch";
-    nixos-apply-upgrade = "sudo nix-channel --upgrade; sudo nixos-rebuild switch";
+    nixos-apply-upgrade = "sudo nix-channel --update; sudo nixos-rebuild switch";
     fordc = "sudo swanctl -i -c SRB-EDV";
     fordd = "sudo swanctl -t -c SRB-EDV";
     rungame = "gamescope -h 960 -U -- gamemoderun";
@@ -329,6 +327,10 @@ in {
           color16 = "#ff9e64";
           color17 = "#db4b4b";
         };
+      };
+      obs-studio = {
+        enable = true;
+        plugins = [ pkgs.obs-studio-plugins.obs-nvfbc ];
       };
     };
   };
