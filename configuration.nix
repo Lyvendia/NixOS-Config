@@ -9,10 +9,16 @@ let
 in {
   imports =
     [ # Include the results of the hardware scan.
+      <home-manager/nixos>
       ./hardware-configuration.nix
       ./secrets.nix
-      <home-manager/nixos>
     ];
+
+  nixpkgs.config.packageOverrides = pkgs: {
+    nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+      inherit pkgs;
+    };
+  };
 
   boot = {
     loader = {
@@ -141,7 +147,6 @@ in {
   # Gnome
     gnome.gnome-tweaks
     gnome.gnome-shell-extensions
-    gnome-solanum
     gnomeExtensions.appindicator
     gnomeExtensions.legacy-gtk3-theme-scheme-auto-switcher
   # Utils
@@ -154,23 +159,28 @@ in {
     smartmontools
     android-udev-rules
     neofetch
+    mangohud
   # Audio
     pavucontrol
     helvum
     easyeffects
+  # NUR
+    nur.repos.dukzcry.gamescope
+  # Unstable
+    unstable.polymc
+    unstable.ledger-live-desktop
   # Other
+    obs-studio
     signal-desktop
     discord
     strongswan
     remmina
     virt-manager
     virt-viewer
-    unstable.ledger-live-desktop
     checkra1n
     vscodium
     gimp
     android-file-transfer
-    bundix
     pinentry-curses
     gcc
   ];
@@ -239,14 +249,16 @@ in {
     VISUAL = "nvim";
     TERM = "xterm-kitty";
     LV2_PATH = "$HOME/.lv2:$HOME/.nix-profile/lib/lv2:/run/current-system/sw/lib/lv2";
+    XKB_DEFAULT_LAYOUT = "de";
   };
 
   environment.shellAliases = {
     nixos-edit = "sudoedit /etc/nixos/configuration.nix";
     nixos-apply = "sudo nixos-rebuild switch";
-    nixos-apply-upgrade = "sudo nixos-rebuild switch --upgrade";
+    nixos-apply-upgrade = "sudo nix-channel --upgrade; sudo nixos-rebuild switch";
     fordc = "sudo swanctl -i -c SRB-EDV";
     fordd = "sudo swanctl -t -c SRB-EDV";
+    rungame = "gamescope -h 960 -U -- gamemoderun";
   };
 
   home-manager.users.luna = { pkgs, ... }: {

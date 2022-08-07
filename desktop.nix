@@ -51,7 +51,10 @@ in {
 
 
   hardware = {
-    #nvidia.powerManagement.enable = true;
+    nvidia = {
+      #powerManagement.enable = true;
+      modesetting.enable = true;
+    };
     openrazer.enable = true;
     openrazer.users = [ "luna" ];
   };
@@ -63,6 +66,7 @@ in {
 
   environment.systemPackages = with pkgs; [
     unstable.polychromatic
+    superTuxKart
     lutris
     xclip
   ];
