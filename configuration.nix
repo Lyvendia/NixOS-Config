@@ -4,9 +4,7 @@
 
 { config, pkgs, ... }:
 
-let
-  unstable = import <nixos-unstable> {};
-in {
+{
   imports =
     [ # Include the results of the hardware scan.
       <home-manager/nixos>
@@ -35,6 +33,7 @@ in {
     };
 
     kernelPackages = pkgs.linuxPackages_latest;
+    kernelModules = [ "v4l2loopback" ];
 
     # Setup keyfile
     initrd.secrets = {
@@ -79,14 +78,14 @@ in {
     xserver = {
       enable = true;    
       displayManager = {
-        gdm.enable = true;
+        sddm.enable = true;
         autoLogin.enable = true;
         autoLogin.user = "luna";
       };
-      desktopManager.gnome.enable = true;
+      desktopManager.plasma5.enable = true;
       layout = "de";
       xkbVariant = "nodeadkeys";
-      xkbOptions = "caps:swapescape"; 
+      xkbOptions = "caps:escape"; 
       autoRepeatDelay = 200;
       autoRepeatInterval = 25;
     };
@@ -165,10 +164,9 @@ in {
     easyeffects
   # NUR
     nur.repos.dukzcry.gamescope
-  # Unstable
-    unstable.polymc
-    unstable.ledger-live-desktop
   # Other
+    polymc
+    ledger-live-desktop
     signal-desktop
     discord
     strongswan
@@ -260,7 +258,10 @@ in {
   };
 
   home-manager.users.luna = { pkgs, ... }: {
-    home.packages = [  ];
+    home = {
+      packages = [  ];
+      stateVersion = "22.05";
+    };
     programs = {
       bash = {
         enable = true;
@@ -283,6 +284,7 @@ in {
           font_size = "14.0";
           font_family = "SauceCodePro Nerd Font Mono";
           remember_window_size = "yes";
+          background_opacity = "0.9";
          
           ## name: Tokyo Night
           ## license: MIT

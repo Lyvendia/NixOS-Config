@@ -1,8 +1,6 @@
 { config, pkgs, ... }:
 
-let
-  unstable = import <nixos-unstable> {};
-in {
+{
   networking = {
     hostName = "Luxputer-Nix"; 
     networkmanager.enable = true;
@@ -14,6 +12,9 @@ in {
       videoDrivers = [ "nvidia" ];
       screenSection = ''
         Option        "metamodes" "DP-2: 2560x1440_120 +0+0 {AllowGSYNC=Off}, DP-4: 1920x1080_120 +2560+0 {rotation=left, AllowGSYNC=Off}"
+      '';
+      deviceSection = ''
+        Option        "Coolbits" "12"
       '';
     };
 
@@ -49,14 +50,13 @@ in {
     '';
   };
 
-
   hardware = {
     nvidia = {
       #powerManagement.enable = true;
       modesetting.enable = true;
-      package = pkgs.nur.repos.arc.packages.nvidia-patch.override {
-        linuxPackages = pkgs.linuxPackages_latest;
-      };
+#      package = pkgs.nur.repos.arc.packages.nvidia-patch.override {
+#        linuxPackages = pkgs.linuxPackages_latest;
+#      };
     };
     openrazer.enable = true;
     openrazer.users = [ "luna" ];
@@ -68,10 +68,11 @@ in {
   };
 
   environment.systemPackages = with pkgs; [
-    unstable.polychromatic
+    polychromatic
     superTuxKart
     lutris
     xclip
+    gwe
   ];
 
 }
