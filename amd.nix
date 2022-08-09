@@ -7,4 +7,4 @@
     ];
     kernelModules = [ "amd-pstate" ];
   };
-};
+}

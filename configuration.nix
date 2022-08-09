@@ -143,11 +143,6 @@
   environment.systemPackages = with pkgs; [
   # Browsers
     firefox
-  # Gnome
-    gnome.gnome-tweaks
-    gnome.gnome-shell-extensions
-    gnomeExtensions.appindicator
-    gnomeExtensions.legacy-gtk3-theme-scheme-auto-switcher
   # Utils
     htop
     ncdu
@@ -167,6 +162,7 @@
     nur.repos.dukzcry.gamescope
   # Other
     polymc
+    superTuxKart
     ledger-live-desktop
     signal-desktop
     discord

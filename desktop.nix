@@ -50,7 +50,6 @@
 
   environment.systemPackages = with pkgs; [
     polychromatic
-    superTuxKart
     lutris
     xclip
   ];
