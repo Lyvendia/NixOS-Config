@@ -33,7 +33,7 @@
     };
 
     kernelPackages = pkgs.linuxPackages_latest;
-    kernelModules = [ "v4l2loopback" ];
+    extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
 
     # Setup keyfile
     initrd.secrets = {
@@ -284,7 +284,7 @@
           font_size = "14.0";
           font_family = "SauceCodePro Nerd Font Mono";
           remember_window_size = "yes";
-          background_opacity = "0.9";
+          background_opacity = "1.0";
          
           ## name: Tokyo Night
           ## license: MIT
