@@ -46,6 +46,7 @@
   };
 
   networking = {
+    networkmanager.enable = true;
     dhcpcd = {
       wait = "background";
       extraConfig = "noarp";
