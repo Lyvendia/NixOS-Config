@@ -18,6 +18,8 @@
     };
   };
 
+  nix.settings.auto-optimise-store = true;
+
   boot = {
     loader = {
       efi = {
@@ -101,6 +103,9 @@
       enable = true;
       drivers = [ pkgs.hplip ];
     };
+    journald.extraConfig = ''
+      SystemMaxUse=2G
+    '';
     flatpak.enable = true;
     usbmuxd.enable = true;
     spice-vdagentd.enable = true;
@@ -135,7 +140,7 @@
   users.users.luna = {
     isNormalUser = true;
     description = "Luna Specht";
-    extraGroups = [ "networkmanager" "wheel" "audio" "disk" "input" "kvm" "optical" "scanner" "storage" "video" "libvirtd" "adbusers" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "audio" "disk" "input" "kvm" "optical" "scanner" "storage" "video" "libvirtd" "adbusers" ];
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -165,6 +170,7 @@
     superTuxKart
     ledger-live-desktop
     signal-desktop
+    bitwarden
     discord
     strongswan
     remmina
@@ -173,6 +179,7 @@
     checkra1n
     vscodium
     gimp
+    vlc
     android-file-transfer
     pinentry-curses
     gcc
@@ -232,7 +239,6 @@
   };
 
   virtualisation = {
-    docker.enable = true;
     libvirtd.enable = true;
     spiceUSBRedirection.enable = true;
   };
