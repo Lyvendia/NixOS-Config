@@ -165,6 +165,9 @@
     easyeffects
   # NUR
     nur.repos.dukzcry.gamescope
+  # Language Servers
+    rnix-lsp
+    sumneko-lua-language-server
   # Other
     polymc
     superTuxKart
@@ -191,40 +194,22 @@
       viAlias = true;
       vimAlias = true;
       configure = {
-        customRC = ''
-          lua <<EOF
-
-          vim.o.termguicolors = true
-          vim.o.tabstop = 2
-          vim.o.shiftwidth = 0
-          vim.o.softtabstop = -1 
-          vim.o.expandtab = true
-          vim.o.clipboard = unnamedplus
-          vim.o.number = true
-          vim.o.relativenumber = true
-          vim.o.ignorecase = true
-          vim.o.smartcase = true
-          vim.o.undofile = true
-          vim.o.cindent = true
-
-          require'nvim-treesitter.configs'.setup {
-            ensure_installed = { "nix" },
-            sync_install = false,
-            auto_install = true,
-            highlight = {
-              enable = true,
-              additional_vim_regex_highlighting = false,
-            },
-          }
-
-          vim.g.tokyonight_style = "night"
-
-          vim.cmd("colorscheme tokyonight")
-
-          EOF
-        '';
+        customRC = (builtins.readFile ./neovim/init.lua);
         packages.myVimPackage = with pkgs.vimPlugins; {
-          start = [ nvim-treesitter tokyonight-nvim ];
+          start = [
+            nvim-treesitter
+            tokyonight-nvim
+            nvim-lspconfig
+            cmp-nvim-lsp
+            cmp-buffer
+            cmp-path
+            cmp-cmdline
+            nvim-cmp
+            luasnip
+            friendly-snippets
+            cmp_luasnip
+            lspkind-nvim
+          ];
           opt = [ ];
         };
       };
