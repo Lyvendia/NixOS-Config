@@ -148,6 +148,7 @@
   environment.systemPackages = with pkgs; [
   # Browsers
     firefox
+    brave
   # Utils
     htop
     ncdu
@@ -175,6 +176,7 @@
     signal-desktop
     bitwarden
     discord
+    minetest
     strongswan
     remmina
     virt-manager
@@ -239,10 +241,9 @@
   environment.shellAliases = {
     nixos-edit = "sudoedit /etc/nixos/configuration.nix";
     nixos-apply = "sudo nixos-rebuild switch";
-    nixos-apply-upgrade = "sudo nix-channel --update; sudo nixos-rebuild switch";
+    nixos-update = "sudo nix-channel --update; nixos-rebuild dry-run";
     fordc = "sudo swanctl -i -c SRB-EDV";
     fordd = "sudo swanctl -t -c SRB-EDV";
-    rungame = "gamescope -h 960 -U -- gamemoderun";
   };
 
   home-manager.users.luna = { pkgs, ... }: {
