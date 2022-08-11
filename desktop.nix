@@ -92,8 +92,11 @@
 
   environment.systemPackages = with pkgs; [
     polychromatic
+    mangohud
+    brave
+    ledger-live-desktop
+    android-file-transfer
     lutris
-    xclip
   ];
 
 }

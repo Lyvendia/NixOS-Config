@@ -89,8 +89,8 @@
       layout = "de";
       xkbVariant = "nodeadkeys";
       xkbOptions = "caps:escape"; 
-      autoRepeatDelay = 200;
-      autoRepeatInterval = 25;
+      autoRepeatDelay = 100;
+      autoRepeatInterval = 15;
     };
     pipewire = {
       enable = true;
@@ -148,7 +148,6 @@
   environment.systemPackages = with pkgs; [
   # Browsers
     firefox
-    brave
   # Utils
     htop
     ncdu
@@ -159,7 +158,7 @@
     smartmontools
     android-udev-rules
     neofetch
-    mangohud
+    xclip
   # Audio
     pavucontrol
     helvum
@@ -172,7 +171,6 @@
   # Other
     polymc
     superTuxKart
-    ledger-live-desktop
     signal-desktop
     bitwarden
     discord
@@ -185,7 +183,6 @@
     vscodium
     gimp
     vlc
-    android-file-transfer
     pinentry-curses
     gcc
   ];
