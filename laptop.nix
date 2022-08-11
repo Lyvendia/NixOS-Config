@@ -8,7 +8,10 @@
   powerManagement.cpuFreqGovernor = "schedutil";
 
   hardware = {
-    bluetooth.powerOnBoot = false;
+    bluetooth = {
+      enable = true;
+      powerOnBoot = false;
+    };
   };
 
   services = {
