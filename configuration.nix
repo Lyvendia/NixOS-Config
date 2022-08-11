@@ -208,6 +208,9 @@
             friendly-snippets
             cmp_luasnip
             lspkind-nvim
+            lualine-nvim
+            nvim-web-devicons
+            nvim-tree-lua
           ];
           opt = [ ];
         };

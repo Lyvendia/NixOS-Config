@@ -83,7 +83,6 @@ require('lspconfig')['sumneko_lua'].setup {
 }
 
 local luasnip = require 'luasnip'
-
 local cmp = require 'cmp'
 local lspkind = require('lspkind')
 
@@ -160,5 +159,14 @@ cmp.setup.cmdline(':', {
 
 vim.g.tokyonight_style = "night"
 vim.cmd("colorscheme tokyonight")
+
+require('lualine').setup {
+  options = {
+    theme = 'tokyonight'
+  }
+}
+
+require("nvim-tree").setup()
+
 
 EOF
