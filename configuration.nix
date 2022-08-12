@@ -173,7 +173,6 @@
     superTuxKart
     signal-desktop
     bitwarden
-    discord
     minetest
     strongswan
     remmina
