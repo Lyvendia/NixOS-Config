@@ -185,6 +185,7 @@
     vlc
     pinentry-curses
     gcc
+    libsForQt5.ark
   ];
 
   programs = {

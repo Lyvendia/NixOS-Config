@@ -7,6 +7,7 @@
 
   services = {
     pipewire = {
+      alsa.support32Bit = true;
       config.pipewire = {
         "context.properties" = {
           ##"link.max-buffers" = 64;

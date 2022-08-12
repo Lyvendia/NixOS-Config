@@ -29,6 +29,7 @@
         linuxPackages = config.boot.kernelPackages;
       };
     };
+    opengl.driSupport32Bit = true;
   };
 
   systemd.services.nvidia-tdp = {
