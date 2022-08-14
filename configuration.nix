@@ -185,6 +185,7 @@
     pinentry-curses
     gcc
     libsForQt5.ark
+    tor-browser-bundle-bin
   ];
 
   programs = {
