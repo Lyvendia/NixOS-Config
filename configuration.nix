@@ -234,7 +234,7 @@
   environment.variables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
-    TERM = "xterm-kitty";
+    TERM = "xterm";
     LV2_PATH = "$HOME/.lv2:$HOME/.nix-profile/lib/lv2:/run/current-system/sw/lib/lv2";
     XKB_DEFAULT_LAYOUT = "de";
   };

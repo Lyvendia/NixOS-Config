@@ -7,6 +7,7 @@
 
   services = {
     pipewire = {
+      jack.enable = true;
       alsa.support32Bit = true;
       config.pipewire = {
         "context.properties" = {
@@ -91,9 +92,23 @@
     scsiLinkPolicy = "med_power_with_dipm";
   };
 
+  environment.shellAliases = {
+    run-supertuxkart = "gamemoderun gamescope -h 823 -U -f --sharpness 0 -- supertuxkart > /dev/null";
+  };
+
   environment.systemPackages = with pkgs; [
     polychromatic
     mangohud
+    goverlay
+    vkBasalt
+    ardour
+    calf
+    helm
+    aether-lv2
+    cardinal
+    dragonfly-reverb
+    zam-plugins
+    surge-XT
     brave
     ledger-live-desktop
     android-file-transfer
