@@ -19,7 +19,7 @@ vim.o.undofile = true
 vim.o.cindent = true
 
 require"nvim-treesitter.configs".setup {
-  ensure_installed = { "nix", "lua" },
+  ensure_installed = { "nix", "lua", "haskell" },
   sync_install = false,
   auto_install = true,
   highlight = {
@@ -82,6 +82,11 @@ require("lspconfig")["sumneko_lua"].setup {
       },
     },
   },
+}
+
+require("lspconfig")["hls"].setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
 }
 
 local luasnip = require "luasnip"

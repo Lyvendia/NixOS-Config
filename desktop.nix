@@ -113,6 +113,7 @@
     ledger-live-desktop
     android-file-transfer
     lutris
+    spotdl
   ];
 
 }

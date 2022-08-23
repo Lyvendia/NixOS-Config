@@ -86,11 +86,15 @@
         autoLogin.user = "luna";
       };
       desktopManager.plasma5.enable = true;
+      windowManager.xmonad = {
+        enable = true;
+        enableContribAndExtras = true;
+      };
       layout = "de";
       xkbVariant = "nodeadkeys";
       xkbOptions = "caps:escape"; 
-      autoRepeatDelay = 100;
-      autoRepeatInterval = 15;
+      autoRepeatDelay = 250;
+      autoRepeatInterval = 30;
     };
     pipewire = {
       enable = true;
@@ -168,6 +172,7 @@
   # Language Servers
     rnix-lsp
     sumneko-lua-language-server
+    haskell-language-server
   # Other
     polymc
     superTuxKart
