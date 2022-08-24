@@ -191,6 +191,7 @@
     gcc
     libsForQt5.ark
     tor-browser-bundle-bin
+    onlyoffice-bin
   ];
 
   programs = {
@@ -202,7 +203,13 @@
         customRC = (builtins.readFile ./neovim/init.lua);
         packages.myVimPackage = with pkgs.vimPlugins; {
           start = [
-            nvim-treesitter
+            (nvim-treesitter.withPlugins (
+              plugins: with plugins; [
+                tree-sitter-nix
+                tree-sitter-lua
+                tree-sitter-haskell
+              ]
+            ))
             tokyonight-nvim
             nvim-lspconfig
             cmp-nvim-lsp
