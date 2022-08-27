@@ -48,7 +48,6 @@
   };
 
   networking = {
-    networkmanager.enable = true;
     dhcpcd = {
       wait = "background";
       extraConfig = "noarp";
@@ -93,8 +92,8 @@
       layout = "de";
       xkbVariant = "nodeadkeys";
       xkbOptions = "caps:escape"; 
-      autoRepeatDelay = 250;
-      autoRepeatInterval = 30;
+      autoRepeatDelay = 600;
+      autoRepeatInterval = 25;
     };
     pipewire = {
       enable = true;
@@ -163,6 +162,7 @@
     android-udev-rules
     neofetch
     xclip
+    killall
   # Audio
     pavucontrol
     helvum
@@ -192,6 +192,10 @@
     libsForQt5.ark
     tor-browser-bundle-bin
     onlyoffice-bin
+    libreoffice-qt
+    hunspell
+    hunspellDicts.en_US
+    hunspellDicts.de_DE
   ];
 
   programs = {
@@ -246,7 +250,7 @@
   environment.variables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
-    TERM = "xterm";
+    TERM = "xterm-kitty";
     LV2_PATH = "$HOME/.lv2:$HOME/.nix-profile/lib/lv2:/run/current-system/sw/lib/lv2";
     XKB_DEFAULT_LAYOUT = "de";
   };

@@ -3,6 +3,12 @@
 {
   networking = {
     hostName = "Luxputer-Nix"; 
+    networkmanager.enable = true;
+    bridges = {
+      "br0" = {
+        interfaces = [ "enp0s31f6" ];
+      };
+    };
   };
 
   services = {

@@ -3,6 +3,7 @@
 {
   networking = {
     hostName = "Luxtop"; 
+    networkmanger.enable = true;
   };
 
   powerManagement.cpuFreqGovernor = "schedutil";
