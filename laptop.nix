@@ -3,7 +3,6 @@
 {
   networking = {
     hostName = "Luxtop"; 
-    networkmanger.enable = true;
   };
 
   powerManagement.cpuFreqGovernor = "schedutil";
@@ -15,8 +14,14 @@
     };
   };
 
+  environment.shellAliases = {
+    run-supertuxkart = "gamemoderun gamescope -h 540 -U -f --sharpness 0 -- supertuxkart > /dev/null";
+  };
+
   services = {
-    tlp.enable = true;
+    tlp = {
+      enable = true;
+    };
     #fwupd.service = true;
   };
 }

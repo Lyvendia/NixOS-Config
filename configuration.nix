@@ -143,7 +143,7 @@
   users.users.luna = {
     isNormalUser = true;
     description = "Luna Specht";
-    extraGroups = [ "networkmanager" "wheel" "audio" "disk" "input" "kvm" "optical" "scanner" "storage" "video" "libvirtd" "adbusers" ];
+    extraGroups = [ "networkmanager" "wheel" "audio" "disk" "input" "kvm" "optical" "scanner" "storage" "video" "libvirtd" "adbusers" "wireshark" ];
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -163,6 +163,8 @@
     neofetch
     xclip
     killall
+    wireshark
+    pciutils
   # Audio
     pavucontrol
     helvum
@@ -240,6 +242,7 @@
     adb.enable = true;
     dconf.enable = true;
     gamemode.enable = true;
+    wireshark.enable = true;
   };
 
   virtualisation = {
