@@ -121,6 +121,7 @@
     lutris
     spotdl
     ventoy-bin
+    rpi-imager
   ];
 
 }

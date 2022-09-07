@@ -18,7 +18,10 @@
     };
   };
 
-  nix.settings.auto-optimise-store = true;
+  nix.settings = {
+    auto-optimise-store = true;
+    experimental-features = [ "nix-command" "flakes" ];
+  };
 
   boot = {
     loader = {
@@ -210,11 +213,7 @@
         packages.myVimPackage = with pkgs.vimPlugins; {
           start = [
             (nvim-treesitter.withPlugins (
-              plugins: with plugins; [
-                tree-sitter-nix
-                tree-sitter-lua
-                tree-sitter-haskell
-              ]
+              (plugins: pkgs.tree-sitter.allGrammars)
             ))
             tokyonight-nvim
             nvim-lspconfig
@@ -243,6 +242,7 @@
     dconf.enable = true;
     gamemode.enable = true;
     wireshark.enable = true;
+    partition-manager.enable = true;
   };
 
   virtualisation = {
@@ -285,6 +285,11 @@
         signing = {
           key = "5754213C2E27F5AD";
           signByDefault = true;
+        };
+        extraConfig = {
+          init = {
+            defaultBranch = "main";
+          };
         };
       };
       kitty = {
