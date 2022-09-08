@@ -86,11 +86,21 @@
         sddm.enable = true;
         autoLogin.enable = true;
         autoLogin.user = "luna";
+        defaultSession = "none+xmonad";
       };
-      desktopManager.plasma5.enable = true;
+      desktopManager = {
+        wallpaper.mode = "fill";
+      };
       windowManager.xmonad = {
         enable = true;
         enableContribAndExtras = true;
+        config = (builtins.readFile ./xmonad/config.hs);
+      };
+      libinput = {
+        mouse = {
+          accelProfile = "flat";
+          accelSpeed = "0";
+        };
       };
       layout = "de";
       xkbVariant = "nodeadkeys";
@@ -112,18 +122,27 @@
     journald.extraConfig = ''
       SystemMaxUse=2G
     '';
+    picom = {
+      enable = true;
+      shadow = true;
+      vSync = true;
+      inactiveOpacity = 0.8;
+    };
     flatpak.enable = true;
     usbmuxd.enable = true;
     spice-vdagentd.enable = true;
-    power-profiles-daemon.enable = false;
   };  
 
   systemd.services = {
-    packagekit.enable = false;
     NetworkManager-wait-online.enable = false;
   };
 
   console.keyMap = "de-latin1-nodeadkeys";
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
 
   hardware = {
     ledger.enable = true;
@@ -147,6 +166,7 @@
     isNormalUser = true;
     description = "Luna Specht";
     extraGroups = [ "networkmanager" "wheel" "audio" "disk" "input" "kvm" "optical" "scanner" "storage" "video" "libvirtd" "adbusers" "wireshark" ];
+    shell = pkgs.fish;
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -166,7 +186,6 @@
     neofetch
     xclip
     killall
-    wireshark
     pciutils
   # Audio
     pavucontrol
@@ -179,6 +198,7 @@
     sumneko-lua-language-server
     haskell-language-server
   # Other
+    dmenu
     polymc
     superTuxKart
     signal-desktop
@@ -194,13 +214,13 @@
     vlc
     pinentry-curses
     gcc
-    libsForQt5.ark
     tor-browser-bundle-bin
     onlyoffice-bin
     libreoffice-qt
     hunspell
     hunspellDicts.en_US
     hunspellDicts.de_DE
+    haskellPackages.xmobar
   ];
 
   programs = {
@@ -239,6 +259,8 @@
       pinentryFlavor = "curses";
     };
     adb.enable = true;
+    tmux.enable = true;
+    fish.enable = true;
     dconf.enable = true;
     gamemode.enable = true;
     wireshark.enable = true;
@@ -253,9 +275,9 @@
   environment.variables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
-    TERM = "xterm-kitty";
     LV2_PATH = "$HOME/.lv2:$HOME/.nix-profile/lib/lv2:/run/current-system/sw/lib/lv2";
     XKB_DEFAULT_LAYOUT = "de";
+    GTK_USE_PORTAL = "1";
   };
 
   environment.shellAliases = {
@@ -268,8 +290,22 @@
 
   home-manager.users.luna = { pkgs, ... }: {
     home = {
-      packages = [  ];
+      packages = [ ];
       stateVersion = "22.05";
+      pointerCursor = {
+        package = pkgs.quintom-cursor-theme;
+        name = "Quintom_Ink";
+        size = 16;
+        x11.enable = true;
+        gtk.enable = true;
+      };
+    };
+    xsession = {
+      enable = true;
+      initExtra = ''
+        xsetroot -solid "#000000"
+        xsetroot -cursor_name left_ptr
+      '';
     };
     programs = {
       bash = {
@@ -292,61 +328,22 @@
           };
         };
       };
-      kitty = {
+      alacritty = {
         enable = true;
         settings = {
-          font_size = "14.0";
-          font_family = "SauceCodePro Nerd Font Mono";
-          remember_window_size = "yes";
-          background_opacity = "1.0";
-         
-          ## name: Tokyo Night
-          ## license: MIT
-          ## author: Folke Lemaitre
-          ## upstream: https://github.com/folke/tokyonight.nvim/raw/main/extras/kitty_tokyonight_night.conf
-
-          background = "#1a1b26";
-          foreground = "#c0caf5";
-          selection_background = "#33467C";
-          selection_foreground = "#c0caf5";
-          url_color = "#73daca";
-          cursor = "#c0caf5";
-
-          # Tabs
-          active_tab_background = "#7aa2f7";
-          active_tab_foreground = "#1f2335";
-          inactive_tab_background = "#292e42";
-          inactive_tab_foreground = "#545c7e";
-          #tab_bar_background = "#15161E";
-
-          # normal
-          color0 = "#15161E";
-          color1 = "#f7768e";
-          color2 = "#9ece6a";
-          color3 = "#e0af68";
-          color4 = "#7aa2f7";
-          color5 = "#bb9af7";
-          color6 = "#7dcfff";
-          color7 = "#a9b1d6";
-
-          # bright
-          color8 = "#414868";
-          color9 = "#f7768e";
-          color10 = "#9ece6a";
-          color11 = "#e0af68";
-          color12 = "#7aa2f7";
-          color13 = "#bb9af7";
-          color14 = "#7dcfff";
-          color15 = "#c0caf5";
-
-          # extended colors
-          color16 = "#ff9e64";
-          color17 = "#db4b4b";
         };
       };
       obs-studio = {
         enable = true;
         plugins = [ pkgs.obs-studio-plugins.obs-nvfbc ];
+      };
+    };
+    services = {
+      xscreensaver = {
+        enable = true;
+        settings = { 
+          mode = "blank";
+        };
       };
     };
   };
