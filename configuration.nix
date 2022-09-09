@@ -128,6 +128,8 @@
       vSync = true;
       inactiveOpacity = 0.8;
     };
+    gvfs.enable = true;
+    tumbler.enable = true;
     flatpak.enable = true;
     usbmuxd.enable = true;
     spice-vdagentd.enable = true;
@@ -175,6 +177,7 @@
   # Browsers
     firefox
   # Utils
+    pcmanfm
     htop
     ncdu
     usbutils
@@ -186,6 +189,7 @@
     neofetch
     xclip
     killall
+    bat
     pciutils
   # Audio
     pavucontrol
@@ -212,6 +216,9 @@
     vscodium
     gimp
     vlc
+    mpv
+    amberol
+    handbrake
     pinentry-curses
     gcc
     tor-browser-bundle-bin
@@ -220,7 +227,12 @@
     hunspell
     hunspellDicts.en_US
     hunspellDicts.de_DE
-    haskellPackages.xmobar
+    # libs
+    ffmpegthumbnailer
+    poppler
+    freetype
+    libgsf
+    pstree
   ];
 
   programs = {
@@ -264,7 +276,7 @@
     dconf.enable = true;
     gamemode.enable = true;
     wireshark.enable = true;
-    partition-manager.enable = true;
+    file-roller.enable = true;
   };
 
   virtualisation = {
@@ -286,6 +298,7 @@
     nixos-update = "sudo nix-channel --update; nixos-rebuild dry-run";
     fordc = "sudo swanctl -i -c SRB-EDV";
     fordd = "sudo swanctl -t -c SRB-EDV";
+    cat = "bat";
   };
 
   home-manager.users.luna = { pkgs, ... }: {
@@ -308,6 +321,30 @@
       '';
     };
     programs = {
+      xmobar = {
+        enable = true;
+        extraConfig = ''
+          Config { overrideRedirect = False
+                 , font     = "xft:SauceCodePro Nerd Font Mono:size=8:antialias=true"
+                 , bgColor  = "#5f5f5f"
+                 , fgColor  = "#f8f8f2"
+                 , position = TopW L 90
+                 , commands = [ Run Cpu
+                                  [ "-L", "3"
+                                  , "-H", "50"
+                                  , "--high"  , "red"
+                                  , "--normal", "green"
+                                  ] 10
+                              , Run Memory ["--template", "Mem: <usedratio>%"] 10
+                              , Run Date "%a %Y-%m-%d <fc=#8be9fd>%H:%M</fc>" "date" 10
+                              , Run XMonadLog
+                              ]
+                 , sepChar  = "%"
+                 , alignSep = "}{"
+                 , template = "%XMonadLog% }{ %cpu% | %memory% | %date% "
+                 }
+        '';
+      };
       bash = {
         enable = true;
         bashrcExtra = ''
@@ -331,6 +368,12 @@
       alacritty = {
         enable = true;
         settings = {
+          font = {
+            normal = {
+              family = "SauceCodePro Nerd Font Mono";
+              size = 11;
+            };
+          };
         };
       };
       obs-studio = {
@@ -344,6 +387,17 @@
         settings = { 
           mode = "blank";
         };
+      };
+    };
+    gtk = {
+      enable = true;
+      theme = {
+        package = pkgs.pop-gtk-theme;
+        name = "Pop-dark";
+      };
+      iconTheme = {
+        package = pkgs.pop-icon-theme;
+        name = "Pop";
       };
     };
   };
