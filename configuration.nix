@@ -90,6 +90,7 @@
       };
       desktopManager = {
         wallpaper.mode = "fill";
+        runXdgAutostartIfNone = true;
       };
       windowManager.xmonad = {
         enable = true;
@@ -217,8 +218,7 @@
     gimp
     vlc
     mpv
-    amberol
-    handbrake
+    tauon
     pinentry-curses
     gcc
     tor-browser-bundle-bin
@@ -326,9 +326,9 @@
         extraConfig = ''
           Config { overrideRedirect = False
                  , font     = "xft:SauceCodePro Nerd Font Mono:size=8:antialias=true"
-                 , bgColor  = "#5f5f5f"
-                 , fgColor  = "#f8f8f2"
-                 , position = TopW L 90
+                 , bgColor  = "#000000"
+                 , fgColor  = "#f8cdae"
+                 , position = Static { xpos = 0, ypos = 0, width = 2448, height = 16 }
                  , commands = [ Run Cpu
                                   [ "-L", "3"
                                   , "-H", "50"
@@ -386,6 +386,18 @@
         enable = true;
         settings = { 
           mode = "blank";
+        };
+      };
+      stalonetray = {
+        enable = true;
+        config = {
+          background = "#000000";
+          geometry = "7x1-1080+0";
+          icon_size = 16;
+          kludges = "force_icons_size";
+          window_layer = "bottom";
+          grow_gravity = "SE";
+          icon_gravity = "SE";
         };
       };
     };

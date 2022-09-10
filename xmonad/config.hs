@@ -13,12 +13,17 @@ import XMonad.Hooks.WindowSwallowing
 import XMonad.ManageHook
 
 
+main :: IO ()
+main = xmonad . ewmhFullscreen . ewmh . xmobarProp $ myConfig
+
 myConfig = def
-   { modMask         = mod4Mask 
-   , terminal        = "alacritty"
-   , layoutHook      = smartSpacingWithEdge 5 $ myLayout
-   , manageHook      = myManageHook
-   , handleEventHook = myHandleEventHook
+   { modMask            = mod4Mask 
+   , normalBorderColor  = "#dddddd"
+   , focusedBorderColor = "#aa0000"
+   , terminal           = "alacritty"
+   , layoutHook         = smartSpacingWithEdge 5 $ myLayout
+   , handleEventHook    = myHandleEventHook
+   , manageHook         = myManageHook
    }
   `additionalKeysP`
     [ ("M-q",   restart "xmonad" True                 )
@@ -30,20 +35,19 @@ myConfig = def
     , ("M-o",   spawn "pcmanfm"                       ) 
     ]
 
-myLayout = toggleLayouts (noBorders Full) (smartBorders (tiled ||| Mirror tiled))
+myLayout = toggleLayouts (noBorders Full) $ smartBorders $ (tiled ||| Mirror tiled)
   where
     tiled    = Tall nmaster delta ratio
     nmaster  = 1      
     ratio    = 1/2    
     delta    = 3/100 
 
+myHandleEventHook = swallowEventHook (className =? "Alacritty" <||> className =? "XTerm") (return True)
+
+myManageHook :: ManageHook
 myManageHook = composeAll
     [ className =? "Gimp" --> doFloat
     , isDialog            --> doFloat
     , isFullscreen        --> doFullFloat
     ]
 
-myHandleEventHook = swallowEventHook (className =? "Alacritty" <||> className =? "XTerm") (return True)
-
-
-main = xmonad . ewmhFullscreen . ewmh . xmobarProp $ myConfig
