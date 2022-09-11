@@ -13,7 +13,6 @@ import XMonad.Hooks.WindowSwallowing
 import XMonad.ManageHook
 
 
-main :: IO ()
 main = xmonad . ewmhFullscreen . ewmh . xmobarProp $ myConfig
 
 myConfig = def
@@ -22,8 +21,8 @@ myConfig = def
    , focusedBorderColor = "#aa0000"
    , terminal           = "alacritty"
    , layoutHook         = smartSpacingWithEdge 5 $ myLayout
-   , handleEventHook    = myHandleEventHook
-   , manageHook         = myManageHook
+   , handleEventHook    = myHandleEventHook <> handleEventHook def
+   , manageHook         = myManageHook <> manageHook def
    }
   `additionalKeysP`
     [ ("M-q",   restart "xmonad" True                 )
@@ -44,7 +43,6 @@ myLayout = toggleLayouts (noBorders Full) $ smartBorders $ (tiled ||| Mirror til
 
 myHandleEventHook = swallowEventHook (className =? "Alacritty" <||> className =? "XTerm") (return True)
 
-myManageHook :: ManageHook
 myManageHook = composeAll
     [ className =? "Gimp" --> doFloat
     , isDialog            --> doFloat
