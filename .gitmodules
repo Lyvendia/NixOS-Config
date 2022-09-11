@@ -1,0 +1,3 @@
+[submodule "NixOS-Secrets"]
+	path = NixOS-Secrets
+	url = git@github.com:Lyvendia/NixOS-Secrets.git

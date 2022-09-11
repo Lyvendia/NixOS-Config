@@ -7,16 +7,8 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      <home-manager/nixos>
-      ./hardware-configuration.nix
-      ./secrets.nix
+      #./secrets.nix
     ];
-
-  nixpkgs.config.packageOverrides = pkgs: {
-    nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-      inherit pkgs;
-    };
-  };
 
   nix.settings = {
     auto-optimise-store = true;
@@ -89,6 +81,7 @@
         defaultSession = "none+xmonad";
       };
       desktopManager = {
+        plasma5.enable = true;
         wallpaper.mode = "fill";
         runXdgAutostartIfNone = true;
       };
@@ -128,6 +121,11 @@
       shadow = true;
       vSync = true;
       inactiveOpacity = 0.8;
+    };
+    openssh = {
+      enable = true;
+      passwordAuthentication = false;
+      kbdInteractiveAuthentication = false;
     };
     gvfs.enable = true;
     tumbler.enable = true;
@@ -197,7 +195,7 @@
     helvum
     easyeffects
   # NUR
-    nur.repos.dukzcry.gamescope
+    config.nur.repos.dukzcry.gamescope
   # Language Servers
     rnix-lsp
     sumneko-lua-language-server
@@ -217,6 +215,7 @@
     vscodium
     gimp
     vlc
+    arandr
     mpv
     tauon
     pinentry-curses
@@ -293,9 +292,8 @@
   };
 
   environment.shellAliases = {
-    nixos-edit = "sudoedit /etc/nixos/configuration.nix";
-    nixos-apply = "sudo nixos-rebuild switch";
-    nixos-update = "sudo nix-channel --update; nixos-rebuild dry-run";
+    nixos-apply = "sudo nixos-rebuild switch --flake .#";
+    nixos-dry-run = "nixos-rebuild dry-run --flake .#";
     fordc = "sudo swanctl -i -c SRB-EDV";
     fordd = "sudo swanctl -t -c SRB-EDV";
     cat = "bat";
@@ -362,6 +360,9 @@
         extraConfig = {
           init = {
             defaultBranch = "main";
+          };
+          submodule = {
+            recurse = true;
           };
         };
       };
