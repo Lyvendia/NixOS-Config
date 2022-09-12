@@ -57,6 +57,8 @@
                  }
         '';
       };
+    };
+    services = {
       stalonetray = {
         config = {
           background = "#000000";
