@@ -220,6 +220,7 @@
     tauon
     pinentry-curses
     gcc
+    git-crypt
     tor-browser-bundle-bin
     onlyoffice-bin
     libreoffice-qt
