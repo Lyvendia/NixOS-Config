@@ -12,13 +12,8 @@
     nur = {
       url = github:nix-community/nur;
     };
-
-    agenix = {
-      url = "github:ryantm/agenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
-  outputs = { self, nixpkgs, home-manager, nur, agenix }: 
+  outputs = { self, nixpkgs, home-manager, nur }: 
   let
     system = "x86_64-linux";
 
@@ -40,7 +35,18 @@
           ./configuration.nix 
           home-manager.nixosModules.home-manager
           nur.nixosModules.nur
-          agenix.nixosModule
+        ];
+      };
+      Luxtop = nixpkgs.lib.nixosSystem {
+        inherit system;
+
+        modules = [ 
+          ./machines/luxtop
+          ./NixOS-Secrets/vpn.nix
+          ./NixOS-Secrets/eduroam.nix
+          ./configuration.nix 
+          home-manager.nixosModules.home-manager
+          nur.nixosModules.nur
         ];
       };  
     };
