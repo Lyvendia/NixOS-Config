@@ -188,6 +188,7 @@
 
   home-manager.users.luna = { pkgs, ... }: {
     programs = {
+      alacritty.settings.font.size = 11;
       xmobar = {
         extraConfig = ''
           Config { overrideRedirect = False

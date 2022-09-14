@@ -43,7 +43,7 @@
         modules = [ 
           ./machines/luxtop
           ./NixOS-Secrets/vpn.nix
-          ./NixOS-Secrets/eduroam.nix
+          ./NixOS-Secrets/wifi.nix
           ./configuration.nix 
           home-manager.nixosModules.home-manager
           nur.nixosModules.nur

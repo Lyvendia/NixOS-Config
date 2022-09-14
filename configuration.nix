@@ -153,12 +153,19 @@
     pulseaudio.enable = false;
   };
 
-  sound.enable = true;
+  sound = {
+    enable = true;
+  };
 
   fonts = {
     fontDir.enable = true;
     fonts = with pkgs; [
       (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
+        noto-fonts
+        noto-fonts-extra
+        noto-fonts-emoji
+        noto-fonts-cjk-sans
+        noto-fonts-cjk-serif
     ];
   };
 
@@ -295,8 +302,8 @@
   };
 
   environment.shellAliases = {
-    nixos-apply = "sudo nixos-rebuild switch --flake .#";
-    nixos-dry-run = "nixos-rebuild dry-run --flake .#";
+    nixos-apply = "sudo nixos-rebuild switch --flake \".?submodules=1#\"";
+    nixos-dry-run = "nixos-rebuild dry-run --flake \".?submodules=1#\"";
     fordc = "sudo swanctl -i -c SRB-EDV";
     fordd = "sudo swanctl -t -c SRB-EDV";
   };
@@ -352,7 +359,6 @@
           font = {
             normal = {
               family = "SauceCodePro Nerd Font Mono";
-              size = 11;
             };
           };
         };

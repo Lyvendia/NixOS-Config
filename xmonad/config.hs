@@ -1,5 +1,6 @@
 import XMonad
 import XMonad.Util.EZConfig
+import XMonad.Actions.Volume
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.Spacing
 import XMonad.Layout.NoBorders
@@ -11,6 +12,8 @@ import XMonad.Hooks.StatusBar.PP
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.WindowSwallowing
 import XMonad.ManageHook
+
+import Graphics.X11.ExtraTypes.XF86
 
 
 main = xmonad . ewmhFullscreen . ewmh . xmobarProp $ myConfig
@@ -24,14 +27,19 @@ myConfig = def
    , handleEventHook    = myHandleEventHook <> handleEventHook def
    , manageHook         = myManageHook <> manageHook def
    }
+  `additionalKeys`
+    [ ((0, xF86XK_AudioLowerVolume),  lowerVolume 0.5 >> return ()          )
+    , ((0, xF86XK_AudioRaiseVolume),  raiseVolume 0.5 >> return ()          )
+    , ((0, xF86XK_AudioMute),         toggleMute    >> return ()            )
+    ]
   `additionalKeysP`
-    [ ("M-q",   restart "xmonad" True                 )
-    , ("M-S-z", spawn "xscreensaver-command -lock"    )
-    , ("M-C-p", spawn "systemctl --user stop picom"   )
-    , ("M-S-p", spawn "systemctl --user start picom"  )
-    , ("M-f",   sendMessage (Toggle "Full")           )
-    , ("M-i",   spawn "firefox"                       ) 
-    , ("M-o",   spawn "pcmanfm"                       ) 
+    [ ("M-q",                         restart "xmonad" True                 )
+    , ("M-S-z",                       spawn "xscreensaver-command -lock"    )
+    , ("M-C-p",                       spawn "systemctl --user stop picom"   )
+    , ("M-S-p",                       spawn "systemctl --user start picom"  )
+    , ("M-f",                         sendMessage (Toggle "Full")           )
+    , ("M-i",                         spawn "firefox"                       ) 
+    , ("M-o",                         spawn "pcmanfm"                       ) 
     ]
 
 myLayout = toggleLayouts (noBorders Full) $ smartBorders $ (tiled ||| Mirror tiled)
