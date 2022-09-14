@@ -98,7 +98,7 @@
                               [ "--template"  , "<dev>: <tx>kB/s|<rx>kB/s"
                               , "--Low"       , "1000"       -- units: B/s
                               , "--High"      , "5000"       -- units: B/s
-                              ] 10
+                              ] 50
                               
                               , Run MultiCpu        
                               [ "--template"  , "Cpu: <total>%"
@@ -107,7 +107,7 @@
                               , "--low"       , "#f8cdae"
                               , "--normal"    , "darkorange"
                               , "--high"      , "darkred"
-                              ] 10
+                              ] 50
         
                               , Run K10Temp "0000:00:18.3"
                               [ "--template"  , "Temp: <Tctl>°C"
@@ -116,7 +116,7 @@
                               , "--low"       , "#f8cdae"
                               , "--normal"    , "darkorange"
                               , "--high"      , "darkred"
-                              ] 50
+                              ] 200
                               
                               , Run Memory
                               [ "--template"  ,"Mem: <usedratio>%"
@@ -125,7 +125,7 @@
                               , "--low"       , "#f8cdae"
                               , "--normal"    , "darkorange"
                               , "--high"      , "darkred"
-                              ] 10
+                              ] 50
 
                               , Run Battery
                               [ "--template"  , "Batt: <acstatus>"
@@ -142,10 +142,10 @@
                                        , "-O"	, "<fc=#dAA520>Charging</fc> <left>% (<timeleft>)"
                                        -- charged status
                                        , "-i"	, "<fc=#006000>Charged</fc>"
-                              ] 50
+                              ] 200
 
                               , Run Date 
-                              "%a %Y-%m-%d <fc=#8be9fd>%H:%M</fc>" "date" 10
+                              "%a %Y-%m-%d <fc=#8be9fd>%H:%M</fc>" "date" 50
                               
                               , Run XMonadLog
                               ]
