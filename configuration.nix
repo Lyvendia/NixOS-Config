@@ -303,7 +303,7 @@
 
   environment.shellAliases = {
     nixos-apply = "sudo nixos-rebuild switch --flake \".?submodules=1#\"";
-    nixos-dry-run = "nixos-rebuild dry-run --flake \".?submodules=1#\"";
+    nixos-dry-run = "sudo nixos-rebuild dry-run --flake \".?submodules=1#\"";
     fordc = "sudo swanctl -i -c SRB-EDV";
     fordd = "sudo swanctl -t -c SRB-EDV";
   };
