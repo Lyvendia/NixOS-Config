@@ -196,19 +196,45 @@
                  , bgColor  = "#000000"
                  , fgColor  = "#f8cdae"
                  , position = Static { xpos = 0, ypos = 0, width = 2448, height = 16 }
-                 , commands = [ Run Cpu
-                                  [ "-L", "3"
-                                  , "-H", "50"
-                                  , "--high"  , "red"
-                                  , "--normal", "green"
-                                  ] 10
-                              , Run Memory ["--template", "Mem: <usedratio>%"] 10
+                 , commands = [ Run DynNetwork
+                              [ "--template"  , "<dev>: <tx>kB/s|<rx>kB/s"
+                              , "--Low"       , "1000"       -- units: B/s
+                              , "--High"      , "5000"       -- units: B/s
+                              ] 50
+
+                              , Run MultiCpu        
+                              [ "--template"  , "Cpu: <total>%"
+                              , "--Low"       , "50"         -- units: %
+                              , "--High"      , "85"         -- units: %
+                              , "--low"       , "#f8cdae"
+                              , "--normal"    , "darkorange"
+                              , "--high"      , "darkred"
+                              ] 50
+        
+                              , Run MultiCoreTemp
+                              [ "--template"  , "Temp: <max>°C"
+                              , "--Low"       , "70"        -- units: °C
+                              , "--High"      , "80"        -- units: °C
+                              , "--low"       , "#f8cdae"
+                              , "--normal"    , "darkorange"
+                              , "--high"      , "darkred"
+                              ] 200
+                              
+                              , Run Memory
+                              [ "--template"  ,"Mem: <usedratio>%"
+                              , "--Low"       , "50"        -- units: %
+                              , "--High"      , "90"        -- units: %
+                              , "--low"       , "#f8cdae"
+                              , "--normal"    , "darkorange"
+                              , "--high"      , "darkred"
+                              ] 50
+
                               , Run Date "%a %Y-%m-%d <fc=#8be9fd>%H:%M</fc>" "date" 10
                               , Run XMonadLog
                               ]
                  , sepChar  = "%"
                  , alignSep = "}{"
-                 , template = "%XMonadLog% }{ %cpu% | %memory% | %date% "
+                 , template = "%XMonadLog% }{ %multicpu% | %multicoretemp% | %memory% | %dynnetwork% | %date% "
                  }
         '';
       };

@@ -188,6 +188,7 @@
     virt-manager
     virt-viewer
     arandr
+    scrot
     htop
     ncdu
     usbutils
@@ -200,6 +201,8 @@
     neofetch
     xclip
     killall
+    xorg.xkill
+    hsetroot
     pciutils
 #   Menus etc
     dmenu
@@ -228,7 +231,7 @@
     tauon
     # office
     onlyoffice-bin
-    libreoffice-qt
+    libreoffice-fresh
     # spelling etc
     hunspell
     hunspellDicts.en_US
@@ -302,8 +305,8 @@
   };
 
   environment.shellAliases = {
-    nixos-apply = "sudo nixos-rebuild switch --flake \".?submodules=1#\"";
-    nixos-dry-run = "sudo nixos-rebuild dry-run --flake \".?submodules=1#\"";
+    nixos-apply = "sudo nixos-rebuild switch --flake '.?submodules=1#'";
+    nixos-dry-run = "sudo nixos-rebuild dry-run --flake '.?submodules=1#'";
     fordc = "sudo swanctl -i -c SRB-EDV";
     fordd = "sudo swanctl -t -c SRB-EDV";
   };
@@ -323,6 +326,7 @@
     xsession = {
       enable = true;
       initExtra = ''
+        hsetroot -solid "#000000"
         xsetroot -cursor_name left_ptr
       '';
     };
@@ -382,12 +386,12 @@
     gtk = {
       enable = true;
       theme = {
-        package = pkgs.pop-gtk-theme;
-        name = "Pop-dark";
+        package = pkgs.flat-remix-gtk;
+        name = "Flat-Remix-GTK-Red-Dark";
       };
       iconTheme = {
-        package = pkgs.pop-icon-theme;
-        name = "Pop";
+        package = pkgs.flat-remix-icon-theme;
+        name = "Flat-Remix-Red-Dark";
       };
     };
   };

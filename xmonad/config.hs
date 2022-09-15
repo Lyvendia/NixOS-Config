@@ -1,5 +1,6 @@
 import XMonad
 import XMonad.Util.EZConfig
+import XMonad.Util.Ungrab
 import XMonad.Actions.Volume
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.Spacing
@@ -34,6 +35,7 @@ myConfig = def
     ]
   `additionalKeysP`
     [ ("M-q",                         restart "xmonad" True                 )
+    , ("M-C-s",                       unGrab *> spawn "scrot -s"            )
     , ("M-S-z",                       spawn "xscreensaver-command -lock"    )
     , ("M-C-p",                       spawn "systemctl --user stop picom"   )
     , ("M-S-p",                       spawn "systemctl --user start picom"  )

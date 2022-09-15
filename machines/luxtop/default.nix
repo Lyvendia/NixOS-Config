@@ -106,7 +106,7 @@
                               , "--High"      , "85"         -- units: %
                               , "--low"       , "#f8cdae"
                               , "--normal"    , "darkorange"
-                              , "--high"      , "darkred"
+                              , "--high"      , "red"
                               ] 50
         
                               , Run K10Temp "0000:00:18.3"
@@ -115,7 +115,7 @@
                               , "--High"      , "80"        -- units: °C
                               , "--low"       , "#f8cdae"
                               , "--normal"    , "darkorange"
-                              , "--high"      , "darkred"
+                              , "--high"      , "red"
                               ] 200
                               
                               , Run Memory
@@ -124,7 +124,7 @@
                               , "--High"      , "90"        -- units: %
                               , "--low"       , "#f8cdae"
                               , "--normal"    , "darkorange"
-                              , "--high"      , "darkred"
+                              , "--high"      , "red"
                               ] 50
 
                               , Run Battery
