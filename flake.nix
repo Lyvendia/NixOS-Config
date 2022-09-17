@@ -32,7 +32,7 @@
         modules = [ 
           ./machines/luxputer
           ./NixOS-Secrets/vpn.nix
-          ./configuration.nix 
+          ./modules
           home-manager.nixosModules.home-manager
           nur.nixosModules.nur
         ];
@@ -44,7 +44,7 @@
           ./machines/luxtop
           ./NixOS-Secrets/vpn.nix
           ./NixOS-Secrets/wifi.nix
-          ./configuration.nix 
+          ./modules
           home-manager.nixosModules.home-manager
           nur.nixosModules.nur
         ];

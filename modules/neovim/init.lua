@@ -5,18 +5,18 @@ nnoremap <Space> <Nop>
 
 lua <<EOF
 
-vim.o.termguicolors = true
-vim.o.tabstop = 2
-vim.o.shiftwidth = 0
-vim.o.softtabstop = -1
-vim.o.expandtab = true
-vim.o.clipboard = "unnamedplus"
-vim.o.number = true
-vim.o.relativenumber = true
-vim.o.ignorecase = true
-vim.o.smartcase = true
-vim.o.undofile = true
-vim.o.cindent = true
+vim.opt.termguicolors = true
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 0
+vim.opt.softtabstop = -1
+vim.opt.expandtab = true
+vim.opt.clipboard = "unnamed"
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.undofile = true
+vim.opt.cindent = true
 
 require"nvim-treesitter.configs".setup {
   ensure_installed = { },
