@@ -55,6 +55,7 @@
     vlc
     mpv
     tauon
+    ffmpeg
     # office
     onlyoffice-bin
     libreoffice-fresh
@@ -66,8 +67,10 @@
     ffmpegthumbnailer
     poppler
     freetype
+    psmisc
     libgsf
-    pstree
+    libva
+    libva-utils
 #   Other
     vscodium
     git-crypt
