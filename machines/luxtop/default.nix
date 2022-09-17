@@ -78,6 +78,9 @@
     };
     picom.backend = "glx";
     tlp = {
+      enable = false;
+    };
+    auto-cpufreq = {
       enable = true;
     };
     #fwupd.service = true;
