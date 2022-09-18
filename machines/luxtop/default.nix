@@ -51,6 +51,12 @@
   powerManagement.cpuFreqGovernor = "schedutil";
 
   hardware = {
+    opengl = {
+      extraPackages = with pkgs; [
+        vaapiVdpau
+        libvdpau-va-gl
+      ];
+    };
     bluetooth = {
       enable = true;
       powerOnBoot = false;
@@ -78,9 +84,6 @@
     };
     picom.backend = "glx";
     tlp = {
-      enable = false;
-    };
-    auto-cpufreq = {
       enable = true;
     };
     #fwupd.service = true;
