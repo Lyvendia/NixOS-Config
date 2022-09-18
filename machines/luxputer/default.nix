@@ -212,7 +212,7 @@
                               ] 50
         
                               , Run MultiCoreTemp
-                              [ "--template"  , "Temp: <max>°C"
+                              [ "--template"  , "Temp: <avg>°C"
                               , "--Low"       , "70"        -- units: °C
                               , "--High"      , "80"        -- units: °C
                               , "--low"       , "#f8cdae"

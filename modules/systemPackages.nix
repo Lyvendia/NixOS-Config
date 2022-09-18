@@ -36,12 +36,12 @@
     helvum
     easyeffects
 #   NUR
-    config.nur.repos.dukzcry.gamescope
 #   Language Servers
     rnix-lsp
     sumneko-lua-language-server
     haskell-language-server
-#   Games
+#   Gaming
+    gamescope
     polymc
     minetest
     superTuxKart
