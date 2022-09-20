@@ -38,6 +38,16 @@
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
+
+  boot = {
+    blacklistedKernelModules = [
+      "snd_hda_codec_hdmi"
+    ];
+    extraModprobeConfig = ''
+      options snd_hda_intel power_save=1
+    '';
+  };
+
   networking = {
     hostName = "Luxputer"; 
     networkmanager.enable = true;
@@ -89,6 +99,11 @@
         };
       };
     };
+    udev = {
+      extraRules = ''
+        SUBSYSTEM=="pci", ATTR{power/control}="auto"
+      '';
+    };
     fstrim.enable = true;
   };
   
@@ -109,47 +124,6 @@
       ventoy-bin
       gwe
     ];
-    etc = {
-      "wireplumber/main.lua.d/50-alsa-config.lua".text = ''
-        alsa_monitor.enabled = true
-        alsa_monitor.properties = {
-          ["alsa.reserve"] = true,
-          ["alsa.midi"] = true,
-          ["alsa.midi.monitoring"] = true,
-          ["vm.node.defaults"] = {
-            ["api.alsa.period-size"] = 256,
-            ["api.alsa.headroom"] = 8192,
-          },
-        }
-        alsa_monitor.rules = {
-          {
-            matches = {
-              {
-                { "device.name", "matches", "alsa_card.*" },
-              },
-            },
-            apply_properties = {
-              ["api.alsa.use-acp"] = true,
-              ["api.acp.auto-profile"] = false,
-              ["api.acp.auto-port"] = false,
-            },
-          },
-          {
-            matches = {
-              {
-                { "node.name", "matches", "alsa_input.*" },
-              },
-              {
-                { "node.name", "matches", "alsa_output.*" },
-              },
-            },
-            apply_properties = {
-              ["session.suspend-timeout-seconds"] = 0
-            },
-          },
-        }
-      '';
-    };
   };
 
   hardware = {
@@ -172,7 +146,7 @@
   };
 
   powerManagement = {
-    cpuFreqGovernor = "performance";
+    cpuFreqGovernor = "powersave";
     scsiLinkPolicy = "med_power_with_dipm";
   };
 
@@ -182,7 +156,7 @@
     wantedBy = [ "graphical.target" ];
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "/run/current-system/sw/bin/nvidia-smi -pl 225";
+      ExecStart = "/run/current-system/sw/bin/nvidia-smi -pl 100";
     };
   };
 

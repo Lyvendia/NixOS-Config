@@ -21,6 +21,7 @@
     file
     lm_sensors
     nmap
+    wol
     smartmontools
     android-udev-rules
     neofetch
