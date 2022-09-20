@@ -77,7 +77,7 @@
     xserver = {
       videoDrivers = [ "nvidia" ];
       screenSection = ''
-        Option        "metamodes" "DP-2: 2560x1440_120 +0+0 {AllowGSYNC=Off}, DP-4: 1920x1080_120 +2560+0 {rotation=left, AllowGSYNC=Off}"
+        Option        "metamodes" "DP-2: 2560x1440_85 +0+0 {AllowGSYNC=Off}" 
       '';
       deviceSection = ''
         Option        "Coolbits" "12"
@@ -217,7 +217,7 @@
       stalonetray = {
         config = {
           background = "#000000";
-          geometry = "7x1-1080+0";
+          geometry = "7x1-0+0";
           icon_size = 16;
           kludges = "force_icons_size";
           window_layer = "bottom";
