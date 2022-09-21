@@ -82,7 +82,6 @@
         enable = true;
       };
     };
-    picom.backend = "glx";
     tlp = {
       enable = true;
     };

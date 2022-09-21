@@ -77,7 +77,7 @@
     xserver = {
       videoDrivers = [ "nvidia" ];
       screenSection = ''
-        Option        "metamodes" "DP-2: 2560x1440_85 +0+0 {AllowGSYNC=Off}" 
+        Option        "metamodes" "DP-2: 2560x1440_100 +0+0 {AllowGSYNC=Off}" 
       '';
       deviceSection = ''
         Option        "Coolbits" "12"

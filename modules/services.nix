@@ -5,7 +5,19 @@
     xserver = {
       enable = true;    
       displayManager = {
-        sddm.enable = true;
+        lightdm = {
+          enable = true;
+          greeters.mini = {
+            enable = true;
+            user = "luna";
+            extraConfig = ''
+              [greeter]
+              show-password-label = false
+              [greeter-theme]
+              background-image = ""
+            '';
+          };
+        };
         autoLogin.enable = true;
         autoLogin.user = "luna";
         defaultSession = "none+xmonad";
@@ -22,14 +34,22 @@
       libinput = {
         mouse = {
           accelProfile = "flat";
-          accelSpeed = "0";
         };
       };
+      inputClassSections = [ 
+        ''
+        	Identifier "My Mouse"
+          MatchIsPointer "yes"
+          Option "AccelerationProfile" "-1"
+          Option "AccelerationScheme" "none"
+          Option "AccelSpeed" "-1"
+        ''
+      ];
       layout = "de";
       xkbVariant = "nodeadkeys";
       xkbOptions = "caps:escape"; 
       autoRepeatDelay = 600;
-      autoRepeatInterval = 25;
+      autoRepeatInterval = 50;
     };
     pipewire = {
       enable = true;
@@ -45,6 +65,7 @@
     '';
     picom = {
       enable = true;
+      backend = "glx";
       shadow = true;
       vSync = true;
       inactiveOpacity = 0.8;
