@@ -12,7 +12,7 @@
             user = "luna";
             extraConfig = ''
               [greeter]
-              show-password-label = false
+              show-password-label = true
               [greeter-theme]
               background-image = ""
             '';
@@ -49,7 +49,7 @@
       xkbVariant = "nodeadkeys";
       xkbOptions = "caps:escape"; 
       autoRepeatDelay = 600;
-      autoRepeatInterval = 50;
+      autoRepeatInterval = 25;
     };
     pipewire = {
       enable = true;
