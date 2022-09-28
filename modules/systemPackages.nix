@@ -56,6 +56,7 @@
     vlc
     mpv
     tauon
+    feh
     ffmpeg
     # office
     onlyoffice-bin

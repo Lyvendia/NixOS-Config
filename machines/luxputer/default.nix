@@ -123,6 +123,7 @@
       spotdl
       ventoy-bin
       gwe
+      nvtop
     ];
     etc = {
       "wireplumber/main.lua.d/50-alsa-config.lua".text = ''
@@ -167,6 +168,11 @@
     };
   };
 
+  virtualisation.docker = {
+    enable = true;
+    enableNvidia = true;
+  };
+
   hardware = {
     openrazer.enable = true;
     openrazer.users = [ "luna" ];
@@ -197,7 +203,7 @@
     wantedBy = [ "graphical.target" ];
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "/run/current-system/sw/bin/nvidia-smi -pl 100";
+      ExecStart = "/run/current-system/sw/bin/nvidia-smi -pl 200";
     };
   };
 
