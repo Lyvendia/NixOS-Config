@@ -182,8 +182,8 @@
         src = pkgs.fetchFromGitHub {
           owner = "keylase";
           repo = "nvidia-patch";
-          rev = "80368e3701ecfcf8c370852b8491348290afc0a8";
-          sha256 = "sha256-IrFAUYO++cg5YAGmleDYGKvyyPdAHTJ/pOdohHUOy/o=";
+          rev = "e1adaaedfa4490c135e359095e085673d6cb1570";
+          sha256 = "sha256-KI3kHwZewxXpdwdPM2hFPDLFtf/F9u6KCA+7+/tSLSY=";
         };
       })).override {
         linuxPackages = config.boot.kernelPackages;
