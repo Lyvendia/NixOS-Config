@@ -56,6 +56,7 @@
         vaapiVdpau
         libvdpau-va-gl
       ];
+      driSupport32Bit = true;
     };
     bluetooth = {
       enable = true;
@@ -63,8 +64,13 @@
     };
   };
 
-  environment.shellAliases = {
-    run-supertuxkart = "gamemoderun gamescope -h 540 -U -f --sharpness 0 -- supertuxkart > /dev/null";
+  environment = {
+    shellAliases = {
+      run-supertuxkart = "gamemoderun gamescope -h 540 -U -f --sharpness 0 -- supertuxkart > /dev/null";
+    };
+    systemPackages = with pkgs; [
+      lutris
+    ];
   };
 
   programs.light.enable = true;

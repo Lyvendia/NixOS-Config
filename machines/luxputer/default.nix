@@ -109,7 +109,7 @@
   
   environment = {
     shellAliases = {
-      run-supertuxkart = "gamemoderun gamescope -h 960 -U -f --sharpness 0 -- supertuxkart > /dev/null";
+      run-supertuxkart = "gamemoderun gamescope -h 823 -U -f --sharpness 0 -- supertuxkart > /dev/null";
     };
     systemPackages = with pkgs; [
       polychromatic
