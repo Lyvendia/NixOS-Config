@@ -12,6 +12,7 @@
     nur = {
       url = github:nix-community/nur;
     };
+
   };
   outputs = { self, nixpkgs, home-manager, nur }: 
   let
@@ -44,6 +45,7 @@
           ./machines/luxtop
           ./NixOS-Secrets/vpn.nix
           ./NixOS-Secrets/wifi.nix
+          ./NixOS-Secrets/vpnHome.nix
           ./modules
           home-manager.nixosModules.home-manager
           nur.nixosModules.nur

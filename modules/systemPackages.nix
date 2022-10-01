@@ -10,6 +10,7 @@
 #   Utils
     bitwarden
     remmina
+    zathura
     virt-manager
     virt-viewer
     arandr
@@ -52,7 +53,7 @@
     strongswan
     openconnect
 #   Media
-    gimp
+    gimp-with-plugins
     vlc
     mpv
     tauon

@@ -91,8 +91,8 @@
           ##"link.max-buffers" = 64;
           "link.max-buffers" = 16; # version < 3 clients can't handle more than this
           "log.level" = 2; # https://docs.pipewire.org/page_daemon.html
-          "default.clock.rate" = 48000;
-          "default.clock.allowed-rates" = [ 44100 48000 88200 96000 ];
+          "default.clock.rate" = 44100;
+          "default.clock.allowed-rates" = [ 44100 48000 88200 96000 176400 192000 ];
           "default.clock.quantum" = 256;
           "default.clock.min-quantum" = 32;
           "default.clock.max-quantum" = 8192;
@@ -124,6 +124,7 @@
       ventoy-bin
       gwe
       nvtop
+      heimdall
     ];
     etc = {
       "wireplumber/main.lua.d/50-alsa-config.lua".text = ''
